@@ -12,4 +12,37 @@ RSpec.describe Customer, type: :model do
 
   # before(:each) do
   # end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  describe 'instance methods' do
+    describe '#successful_transaction_count'
+    it 'returns total successful transacton count' do
+      
+    
+
+    end
+  end
 end
