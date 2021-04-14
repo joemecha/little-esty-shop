@@ -16,11 +16,10 @@ RSpec.describe 'when I visit the admin dashboard' do
     expect(page).to have_link('Admin Invoices Index', href: admin_invoices_path)
   end
 
-  it 'shows top 5 customers w/ the most successful transactions' do
-    customer = create(:customer)
+  xit 'shows top 5 customers w/ the most successful transactions' do
+    @customer_1 = FactoryBot.create(:customer)
     customer.transaction_count
     visit '/admin'
-    
   end
 end
 
