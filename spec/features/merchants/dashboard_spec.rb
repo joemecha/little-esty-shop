@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'As a visitor' do
   before(:each) do
 
+    require "pry"; binding.pry
     @merchant_1 = create(:merchant)
-    # require "pry"; binding.pry
     @item_1 = create(:item, merchant: @merchant_1)
     @item_2 = create(:item, merchant: @merchant_1)
     @item_3 = create(:item, merchant: @merchant_1)
@@ -12,16 +12,14 @@ RSpec.describe 'As a visitor' do
     @item_5 = create(:item, merchant: @merchant_1)
     @item_6 = create(:item, merchant: @merchant_1)
 
-    # require "pry"; binding.pry
+    # @customer_1 = create(:customer)
+    # @customer_2 = create(:customer)
+    # @customer_3 = create(:customer)
+    # @customer_4 = create(:customer)
+    # @customer_5 = create(:customer)
+    # @customer_6 = create(:customer)
 
-    @customer_1 = create(:customer)
-    @customer_2 = create(:customer)
-    @customer_3 = create(:customer)
-    @customer_4 = create(:customer)
-    @customer_5 = create(:customer)
-    @customer_6 = create(:customer)
-
-    @invoice_1 = create(:invoice)
+    @invoice_1 = create(:invoice)#Each invoice makes a customer, so code above is not required.
     @invoice_2 = create(:invoice)
     @invoice_3 = create(:invoice)
     @invoice_4 = create(:invoice)
@@ -46,20 +44,20 @@ RSpec.describe 'As a visitor' do
     @transaction_9 = create(:transaction)
     @invoice_2.transactions << [@transaction_6, @transaction_7, @transaction_8, @transaction_9]
 
-    @transaction_10 = FactoryBot.create(:transaction)
-    @transaction_11 = FactoryBot.create(:transaction)
-    @transaction_12 = FactoryBot.create(:transaction)
+    @transaction_10 = create(:transaction)
+    @transaction_11 = create(:transaction)
+    @transaction_12 = create(:transaction)
     @invoice_3.transactions << [@transaction_10, @transaction_11, @transaction_12]
 
-    @transaction_13 = FactoryBot.create(:transaction)
-    @transaction_14 = FactoryBot.create(:transaction)
+    @transaction_13 = create(:transaction)
+    @transaction_14 = create(:transaction)
     @invoice_4.transactions << [@transaction_13, @transaction_14]
 
-    @transaction_15 = FactoryBot.create(:transaction)
+    @transaction_15 = create(:transaction)
     @invoice_5.transactions << [@transaction_15]
 
-    @invoice_item_1 = FactoryBot.create(:invoice_item)
-    @invoice_item_2 = FactoryBot.create(:invoice_item)
+    @invoice_item_1 = create(:invoice_item)
+    @invoice_item_2 = create(:invoice_item)
 
 
     visit "/merchants/#{@merchant_1.id}/dashboard"
