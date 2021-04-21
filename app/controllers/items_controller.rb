@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def index
     @merchant = Merchant.find(params[:merchant_id])
-    @top_five_items = @merchant.items.top_five
+    @top_five_items = @merchant.top_five_items 
     @enabled_items = @merchant.items.enabled_items
     @disabled_items = @merchant.items.disabled_items
   end
@@ -23,12 +23,12 @@ class ItemsController < ApplicationController
     @merchant = Merchant.find(merchant_id)
 
     item.update(item_params)
-    # require "pry"; binding.pry
-    if item.save && params[:item]
+    if item.save && params[:status]
       flash[:notice] = "Item successfully updated!"
-      redirect_to "/merchants/#{merchant_id}/items/#{item.id}"
+      redirect_to "/merchants/#{merchant_id}/items"
     else
-      redirect_to "/merchants/#{merchant_id}/items/"
+      flash[:notice] = "Item not updated."
+      redirect_to "/merchants/#{merchant_id}/items/#{item.id}/edit"
     end
   end
 

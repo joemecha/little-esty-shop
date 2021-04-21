@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :merchant
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
+  has_many :transactions, through: :invoices
 
   enum status: [ :disabled, :enabled ]
 
@@ -23,7 +24,12 @@ class Item < ApplicationRecord
   end
 
   def self.top_five
-    # AR here
+    joins(:transactions)
+    .where(transactions: {result: :success})
+    .group('items.id')
+    .select("items.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
+    .order(total_revenue: :desc)
+    .limit(5)
   end
 
   def top_selling_date

@@ -105,5 +105,5 @@ RSpec.describe 'as a merchant, when I visit the merchant items index' do
         end
       end
     end
-  end 
+  end
 end
