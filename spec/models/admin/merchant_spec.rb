@@ -81,7 +81,7 @@ RSpec.describe Merchant, type: :model do
   end
 
   describe 'class methods' do
-    it '::top_five_by_successful_transaction_count' do
+    describe '::top_five_by_successful_transaction_count' do
     end
 
     describe '::top_five_by_merchant_revenue' do
@@ -96,11 +96,12 @@ RSpec.describe Merchant, type: :model do
     #
     # Note: use the invoice date. If there are multiple days with equal number of sales, return the most recent day.
   describe 'instance methods' do
-    it '#top_selling_date' do
+    describe '#top_selling_date' do
       it 'returns the most recent invoice date for top revenue day' do
+
         expect(@merchant_1.top_selling_date).to eq(@invoice_6.created_at)
         expect(@merchant_2.top_selling_date).to eq(@invoice_7.created_at)
+      end
     end
   end
-end
 end
