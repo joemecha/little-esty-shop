@@ -1,7 +1,8 @@
-<h2><%= @merchant.name %>'s Item:</h2>
+<h3><%= @merchant.name %>'s Item:</h3>
 
-<h3> <%= @item.name %> </h3>
+<h2> <%= @item.name %> </h2>
   <p>Description: <%= @item.description%></p>
-  <p>Current Selling Price: $<%= @item.formatted_unit_price %></p>
-  <%# <%= link_to "Edit #{item.name}", "/merchants/#{merchant.id}/#{item.id}", method: :patch %>
+  <p>Current Selling Price: $<%= @item.formatted_unit_price %></p><br>
+
+  <%= link_to "Edit Item", "/merchants/#{@merchant.id}/items/#{@item.id}/edit" %>
   <%# <%= link_to "Delete #{vet.name}", "/merchants/#{merchant.id}/#{item.id}", method: :delete %>

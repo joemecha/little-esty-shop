@@ -26,7 +26,7 @@ RSpec.describe 'item creation' do
 
           fill_in 'Name', with: "Bort's Bumblebeet Lip Balm"
           fill_in 'Description', with: "All natural ingredient pure beet balm from the bearded Bort you can trust"
-          fill_in 'Unit Price', with: 15
+          fill_in 'Unit Price', with: 150
           click_button 'Submit'
           expect(page).to have_current_path("/merchants/#{@merchant_1.id}/items")
           expect(page).to have_content("Bort's Bumblebeet Lip Balm")
