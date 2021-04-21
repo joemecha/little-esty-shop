@@ -14,11 +14,20 @@ class Item < ApplicationRecord
     where(invoice_items: {status: "packaged"})
   end
 
-  def self.disabled_items 
+  def self.disabled_items
     where(status: 0)
   end
 
   def self.enabled_items
     where(status: 1)
   end
+
+  def self.top_five
+    # AR here
+  end
+
+  def top_selling_date
+    # AR here
+  end
+
 end
