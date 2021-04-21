@@ -5,9 +5,9 @@ RSpec.describe 'as a merchant, when I click on the id of an invoice' do
     @merchant_1 = create(:merchant)
     @merchant_2 = create(:merchant)
 
-    @item_1 = create(:item, merchant: @merchant_1)
-    @item_2 = create(:item, merchant: @merchant_1)
-    @item_3 = create(:item, merchant: @merchant_2)
+    @item_1 = create(:item, merchant: @merchant_1, status: 0)
+    @item_2 = create(:item, merchant: @merchant_1, status: 0)
+    @item_3 = create(:item, merchant: @merchant_2, status: 1)
 
     @customer_1 = create(:customer)
     @customer_2 = create(:customer)
@@ -70,4 +70,18 @@ RSpec.describe 'as a merchant, when I click on the id of an invoice' do
     expect(page).to_not have_content("Qty: #{@invoice_item_3.quantity}")
     expect(page).to_not have_content(@invoice_item_3.formatted_unit_price)
   end
-end
+
+  xit "allows a user to update an invoice item's status by selecting from dropdown" do
+    visit "/merchants/#{@merchant_1.id}/invoices/#{@invoice_1.id}"
+    merchant_1 = create(:merchant)
+    item_1 = create(:item, merchant: merchant_1, status: 0)
+    customer_1 = create(:customer)
+    invoice_1 = create(:invoice, customer_id: customer_1.id, status: 2)
+    invoice_item_1 = create(:invoice_item, item_id: item_1.id, invoice_id: invoice_1.id, status: :pending, quantity: 1, unit_price: 30)
+
+      expect(page).to have_content('pending')
+      select('packaged', from: 'status')
+      click_button("Update #{invoice_1.item_name} Status")
+      expect(page). to have_content('packaged')
+    end
+  end

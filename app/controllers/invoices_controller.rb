@@ -9,4 +9,17 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     @invoice_items = @invoice.invoice_items
   end
+
+  def update
+    @invoice = Invoice.find(params[:id])
+    if params[:status]
+      @invoice.update(invoice_params)
+      redirect_to "/merchants/#{@merchant.id}/invoices/#{@invoice.id}"
+  end
+end
+
+private
+  def invoice_params
+    params.permit(:status, :customer_id)
+  end
 end

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # get  '/merchants/:id', to: 'merchants#show', as: 'merchant'
   # put   '/merchants/:id', to: 'merchants#update'
   # delete '/merchants/:id', to: 'merchants#destroy'
+  patch '/invoice_items/:id', to: 'invoice_items#update'
 
 
 

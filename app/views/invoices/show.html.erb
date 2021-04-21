@@ -10,5 +10,10 @@
     <% @invoice.invoice_items.each do |invoice_item| %>
       <p>Item Name: <%= invoice_item.item_name %> Qty: <%= invoice_item.quantity %></p>
       <p>Sold For: $<%= invoice_item.formatted_unit_price %></p>
+      <%= form_with url: "/invoice_items/#{invoice_item.id}", method: :patch, local: true do |f| %>
+        <%= f.label :status %>
+        <%= f.select :status, [ 'pending', 'packaged', 'shipped' ], selected: invoice_item.status %>
+        <%= f.submit "Update #{invoice_item.item_name} Status" %>
+    <% end  %>
     <% end  %>
 </section>
