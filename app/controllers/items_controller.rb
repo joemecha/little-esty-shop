@@ -1,10 +1,8 @@
 class ItemsController < ApplicationController
-  # before_action :find_item, except: [:index, :new, :create]
-  # before_action :find_merchant
 
   def index
     @merchant = Merchant.find(params[:merchant_id])
-    # @items = @merchant.items
+    @top_five_items = @merchant.top_five_items 
     @enabled_items = @merchant.items.enabled_items
     @disabled_items = @merchant.items.disabled_items
   end
@@ -23,12 +21,14 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     merchant_id = item.merchant_id
     @merchant = Merchant.find(merchant_id)
+
     item.update(item_params)
-    if item.save && params[:item]
+    if item.save && params[:status]
       flash[:notice] = "Item successfully updated!"
-      redirect_to "/merchants/#{merchant_id}/items/#{item.id}"
+      redirect_to "/merchants/#{merchant_id}/items"
     else
-      redirect_to "/merchants/#{merchant_id}/items/"
+      flash[:notice] = "Item not updated."
+      redirect_to "/merchants/#{merchant_id}/items/#{item.id}/edit"
     end
   end
 
@@ -55,11 +55,4 @@ class ItemsController < ApplicationController
   def item_params
     params.permit(:name, :description, :unit_price, :status)
   end
-  # def find_merchant
-  #   @merchant = Merchant.find(params[:merchant_id])
-  # end
-  #
-  # def find_item
-  #   @item = Item.find(params[:id])
-  # end
 end

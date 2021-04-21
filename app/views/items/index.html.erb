@@ -7,7 +7,7 @@
       <% @merchant.items.enabled_items.each do |item|%>
           <section id="item-<%=item.id %>">
             <p><%= link_to "#{item.name}", merchant_item_path(@merchant.id, item.id) %>
-              <%= button_to "Disable #{item.name}", item_update_path(item), params: {status: :disabled}, method: :patch, local: true %></p>
+              <%= button_to "Disable #{item.name}", item_update_path(item), params: {status: :disabled, merchant_id: "#{@merchant.id}"}, method: :patch, local: true %></p>
           </section>
       <%end%>
   </section>

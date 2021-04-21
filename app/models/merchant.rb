@@ -33,4 +33,8 @@ class Merchant < ApplicationRecord
       .order('invoices.created_at asc')
       # .select('items.*', 'invoices.created_at')
   end
+
+  def top_five_items
+    items.top_five 
+  end
 end
