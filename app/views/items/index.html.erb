@@ -21,3 +21,12 @@
           </section>
       <%end%>
   </section>
+
+  <section id="top-five-items">
+  <h2>Top Five Items</h2>
+    <% @merchant.items.top_five.each do |item| %>
+      <section id="top-item-<%=item.id %>">
+        <p><%= link_to "#{item.name}", merchant_item_path(@merchant.id, item.id) %> - <%= item.top_selling_date %></p>
+      </section>
+    <%end%>
+</section>

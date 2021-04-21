@@ -82,27 +82,25 @@ RSpec.describe 'as a merchant, when I visit the merchant items index' do
   end
 
   describe "I see a section 'Top Five Items' with items" do
-    it "top-five-items section" do
-      within "#top-five-items"  do
-        xit "displays the names of the top 5 items ranked by total revenue" do
+    describe "top-five-items section" do
+      it "displays the names of the top 5 items ranked by total revenue" do
+        within "#top-five-items"  do
         end
+      end
 
-        xit "each name links to merchant item show page for that item" do
-        end
+      it "each name links to merchant item show page for that item" do
+      end
 
-        xit "total revenue generated for that item is displayed next to each item" do
-        end
+      it "total revenue generated for that item is displayed next to each item" do
+      end
 
-        describe "Next to each of the five most popular items" do
-          xit "has the date with the most sales for each item (invoice date)" do
-            expect(page).to have_content("Top Selling Date Was: ")
-            # expect(page).to have_content() # 1st top item.top_selling_date
-            # expect(page).to have_content() # 2nd top item.top_selling_date
-            # expect(page).to have_content() # 3rd top item.top_selling_date
-            # expect(page).to have_content() # 4th top item.top_selling_date
-            # expect(page).to have_content() # 5th top item.top_selling_date
-          end
-        end
+      it "Next to each of the five most popular items I see the date with the most sales for each item (invoice date)" do
+        expect(page).to have_content("Top Selling Date Was: ")
+        # expect(page).to have_content() # 1st top item.top_selling_date
+        # expect(page).to have_content() # 2nd top item.top_selling_date
+        # expect(page).to have_content() # 3rd top item.top_selling_date
+        # expect(page).to have_content() # 4th top item.top_selling_date
+        # expect(page).to have_content() # 5th top item.top_selling_date
       end
     end
   end
