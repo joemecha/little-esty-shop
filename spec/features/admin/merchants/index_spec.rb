@@ -100,17 +100,25 @@ RSpec.describe 'when I visit the admin merchant index page' do
       end
     end
 
-    # need to find a way to test this but not mapping to id in p tag
-    it 'updates merchant status when button pushed' do
+  it 'updates merchant status when button pushed' do
+  visit '/admin/merchants'
+
+    within "#enabled-merchants"  do
+      expect(page).to have_content(@merchant_1.name)
+
+      click_button("Disable #{@merchant_1.name}")
+
+      expect(page).to_not have_content(@merchant_1.name)
+    end
+  end
+
+  it 'shows top 5 merchants by revenue with the date of most recent revenue for each merchant' do
     visit '/admin/merchants'
 
-      within "#enabled-merchants"  do
-        expect(page).to have_content(@merchant_1.name)
-
-        click_button("Disable #{@merchant_1.name}")
-
-        expect(page).to_not have_content(@merchant_1.name)
-      end
-    end
+    expect(page).to have_content("Top selling date for #{@merchant_1}'s Store was #{@merchant_1.top_selling_date}")
+    expect(page).to have_content("Top selling date for #{@merchant_2}'s Store was #{@merchant_2.top_selling_date}")
+    expect(page).to have_content("Top selling date for #{@merchant_3}'s Store was #{@merchant_3.top_selling_date}")
+    expect(page).to have_content("Top selling date for #{@merchant_4}'s Store was #{@merchant_4.top_selling_date}")
+    expect(page).to have_content("Top selling date for #{@merchant_5}'s Store was #{@merchant_5.top_selling_date}")
   end
 end
