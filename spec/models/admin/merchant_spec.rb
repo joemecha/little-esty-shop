@@ -37,8 +37,6 @@ RSpec.describe Merchant, type: :model do
 
   @invoice_9 = FactoryBot.create(:invoice, created_at:'21 Apr 2021 17:58:39 UTC +00:00')
   @invoice_10 = FactoryBot.create(:invoice, created_at:'21 Apr 2021 17:58:39 UTC +00:00')
-
-
   @invoice_item_10 = create(:invoice_item, item_id: @item_5.id, invoice_id: @invoice_5.id, status: "packaged", quantity: 100, unit_price: 5)
 
   @customer_1 = FactoryBot.create(:customer)
@@ -60,12 +58,22 @@ RSpec.describe Merchant, type: :model do
   @transaction_3 = FactoryBot.create(:transaction, result: 1)
   @transaction_4 = FactoryBot.create(:transaction, result: 1)
   @transaction_5 = FactoryBot.create(:transaction, result: 1)
+  @transaction_6 = FactoryBot.create(:transaction, result: 1)
+  @transaction_7 = FactoryBot.create(:transaction, result: 1)
+  @transaction_8 = FactoryBot.create(:transaction, result: 1)
+  @transaction_9 = FactoryBot.create(:transaction, result: 1)
+  @transaction_10 = FactoryBot.create(:transaction, result: 1)
 
   @invoice_1.transactions << @transaction_1
   @invoice_2.transactions << @transaction_2
   @invoice_3.transactions << @transaction_3
   @invoice_4.transactions << @transaction_4
   @invoice_5.transactions << @transaction_5
+  @invoice_6.transactions << @transaction_6
+  @invoice_7.transactions << @transaction_7
+  @invoice_8.transactions << @transaction_8
+  @invoice_9.transactions << @transaction_9
+  @invoice_10.transactions << @transaction_10
   end
 
   describe 'relationships' do
@@ -81,12 +89,9 @@ RSpec.describe Merchant, type: :model do
   end
 
   describe 'class methods' do
-    describe '::top_five_by_successful_transaction_count' do
-    end
-
     describe '::top_five_by_merchant_revenue' do
       it 'returns top five merchants by total revenue' do
-        expect(Merchant.top_five_by_merchant_revenue).to eq([@merchant_5, @merchant_4, @merchant_2, @merchant_3, @merchant_1])
+        expect(Merchant.top_five_by_merchant_revenue).to eq([@merchant_2, @merchant_1, @merchant_5, @merchant_4, @merchant_3])
       end
     end
   end

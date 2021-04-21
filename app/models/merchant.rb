@@ -33,4 +33,13 @@ class Merchant < ApplicationRecord
       .order('invoices.created_at asc')
       # .select('items.*', 'invoices.created_at')
   end
+
+  def top_selling_date
+    items.joins(:invoice_items, :invoices)
+    .select("invoice.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_rev")
+    .group("invoice_items.id")
+    .order('total_rev ASC')
+    .order("invoice_items.created_at DESC")
+    .limit(1)
+  end
 end
