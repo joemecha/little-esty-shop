@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   enum status: [ :disabled, :enabled ]
 
   def self.ready_to_ship
-    where(invoice_items: {status: "packaged"})
+    where.not(invoice_items: {status: "shipped"})
   end
 
   def self.disabled_items
