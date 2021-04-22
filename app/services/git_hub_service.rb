@@ -43,7 +43,11 @@ class GitHubService
 
   def get_pull_requests
     resp = conn.get("/repos/#{@owner}/#{@repo}/pulls?state=all")
-    JSON.parse(resp.body, symbolize_names: true)
+    pulls = JSON.parse(resp.body, symbolize_names: true)
+    n = pulls.map do |pull|
+      pull[:number]
+    end
+    n.first
   end
 end
 
