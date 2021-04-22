@@ -1,6 +1,7 @@
 # Little Esty Shop
 ![Zesty image](https://github.com/brueck1988/little-esty-shop/blob/main/lib/assets/zetsy_logo.jpeg "Z-Esty Shop Logo")
 
+[Little Esty Shop on Heroku](https://fast-basin-75082.herokuapp.com/)
 
 ## Background and Description
 
