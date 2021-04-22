@@ -1,4 +1,6 @@
 # Little Esty Shop
+![Zesty image](/lib/assets/zesty_logo.jpg "Z-Esty Shop Logo")
+
 
 ## Background and Description
 
