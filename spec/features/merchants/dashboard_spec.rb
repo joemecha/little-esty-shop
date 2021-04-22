@@ -161,7 +161,7 @@ RSpec.describe 'As a visitor' do
       end
     end
 
-    xit "displays items and their invoices that are ready to ship" do
+    it "displays items and their invoices that are ready to ship" do
       within "#ready_to_ship" do
         visit "/merchants/#{@merchant_2.id}/dashboard"
         expect(page).to have_content("Items Ready to Ship")

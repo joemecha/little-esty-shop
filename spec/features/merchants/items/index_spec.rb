@@ -37,7 +37,7 @@ RSpec.describe 'as a merchant, when I visit the merchant items index' do
   end
 
   describe "I see two sections, one for 'Enabled Items' and one for 'Disabled Items'" do
-    it 'has a button next to each merchant to disable/enable it it' do
+    it 'has a button next to each item to disable/enable it' do
 
       within"#enabled-items" do
         expect(page).to have_content("Enabled Items")
@@ -94,7 +94,7 @@ RSpec.describe 'as a merchant, when I visit the merchant items index' do
       it "total revenue generated for that item is displayed next to each item" do
       end
 
-      it "Next to each of the five most popular items I see the date with the most sales for each item (invoice date)" do
+      xit "Next to each of the five most popular items I see the date with the most sales for each item (invoice date)" do
         expect(page).to have_content("Top Selling Date Was: ")
         # expect(page).to have_content() # 1st top item.top_selling_date
         # expect(page).to have_content() # 2nd top item.top_selling_date

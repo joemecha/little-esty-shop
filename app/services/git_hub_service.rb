@@ -4,18 +4,19 @@ require 'json'
 
 class GitHubService
   attr_reader :contributor_names
-            
+
   def initialize
     @contributor_names = contributor_names
     @owner = "brueck1988"
     @repo = "little-esty-shop"
+    @token = "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"
   end
 
   def conn
     Faraday.new(
       url: 'https://api.github.com',
       headers: {
-        # 'Authorization' => "token #{@token}",
+        'Authorization' => "token #{@token}",
         'Accept' => 'application/vnd.github.v3+json'
       }
     )
