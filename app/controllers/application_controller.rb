@@ -1,12 +1,16 @@
 class ApplicationController < ActionController::Base
+  before_action :stupid
+  
   def admin
   end
 
-  git_api = GitHubService.new
-  @repo_name = git_api.get_repo_name
-  @contributors = git_api.get_contributors
-  
 
+  def stupid
+    git_api = GitHubService.new
+    @repo_name = git_api.get_repo_name
+    @contributors = git_api.get_contributors
+    @pulls = git_api.get_pull_requests
+  end
 
   private
 

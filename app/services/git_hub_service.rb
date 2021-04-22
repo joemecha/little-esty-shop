@@ -28,8 +28,9 @@ class GitHubService
 
 
   def get_repo_name
-    resp = conn.get("/repos/#{@owner}/#{@repo}") 
-    JSON.parse(resp.body, symbolize_names: true)
+    resp = conn.get("/repos/#{@owner}/#{@repo}")
+    data = JSON.parse(resp.body, symbolize_names: true)
+    data[:name]
   end
 
   def get_contributors
