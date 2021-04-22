@@ -37,4 +37,10 @@ data = service.get_repo_name(owner, repo)
 contributors = service.get_contributors(owner, repo)
 
 puts data[:full_name]
-puts contributors[0][:login]
+
+contributor_names = contributors.map do |contributor|
+  contributor[:login]
+end
+
+
+puts contributor_names
