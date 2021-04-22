@@ -16,5 +16,10 @@
   </div>
   <% end %>
     <%= yield %>
+  <br>
+  <h1> Github Contributors </h1>
+  <% GitHubService.new %>
+  <%= @contributor_names %>
+  <%= @repo_name %>
   </body>
 </html>

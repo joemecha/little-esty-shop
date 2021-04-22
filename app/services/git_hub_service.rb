@@ -3,9 +3,26 @@ require 'json'
 
 
 class GitHubService
+  attr_reader :contributor_names,
+              :repo_name
+              
 # SRP: Communicate with Github API
   def initialize
+    @contributor_names = contributor_names
+    @repo_name = repo_name
   end
+
+service = GitHubService.new
+owner = "brueck1988"
+repo = "little-esty-shop"
+data = service.get_repo_name(owner, repo)
+contributors = service.get_contributors(owner, repo)
+
+@repo_name = data[:full_name]
+
+@contributor_names = contributors.map do |contributor|
+  contributor[:login]
+end
 
   def conn
     Faraday.new(
@@ -30,17 +47,17 @@ class GitHubService
   end
 end
 
-service = GitHubService.new
-owner = "brueck1988"
-repo = "little-esty-shop"
-data = service.get_repo_name(owner, repo)
-contributors = service.get_contributors(owner, repo)
+# service = GitHubService.new
+# owner = "brueck1988"
+# repo = "little-esty-shop"
+# data = service.get_repo_name(owner, repo)
+# contributors = service.get_contributors(owner, repo)
 
-puts data[:full_name]
+# @repo_name = data[:full_name]
 
-contributor_names = contributors.map do |contributor|
-  contributor[:login]
-end
+# @contributor_names = contributors.map do |contributor|
+#   contributor[:login]
+# end
 
 
-puts contributor_names
+
