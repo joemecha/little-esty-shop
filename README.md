@@ -1,5 +1,5 @@
 # Little Esty Shop
-![Zesty image](/lib/assets/zesty_logo.jpg "Z-Esty Shop Logo")
+![Zesty image](https://github.com/brueck1988/little-esty-shop/blob/main/lib/assets/zetsy_logo.jpeg "Z-Esty Shop Logo")
 
 
 ## Background and Description
