@@ -3,26 +3,17 @@ require 'json'
 
 
 class GitHubService
-  attr_reader :contributor_names,
-              :repo_name
+  attr_reader :contributor_names
+            
               
 # SRP: Communicate with Github API
   def initialize
     @contributor_names = contributor_names
-    @repo_name = repo_name
+    @owner = "brueck1988"
+    @repo = "little-esty-shop"
   end
+  
 
-service = GitHubService.new
-owner = "brueck1988"
-repo = "little-esty-shop"
-data = service.get_repo_name(owner, repo)
-contributors = service.get_contributors(owner, repo)
-
-@repo_name = data[:full_name]
-
-@contributor_names = contributors.map do |contributor|
-  contributor[:login]
-end
 
   def conn
     Faraday.new(
@@ -36,13 +27,21 @@ end
 
 
 
-  def get_repo_name(owner, repo)
-    resp = conn.get("/repos/#{owner}/#{repo}") 
+  def get_repo_name
+    resp = conn.get("/repos/#{@owner}/#{@repo}") 
     JSON.parse(resp.body, symbolize_names: true)
   end
 
-  def get_contributors(owner, repo)
-    resp = conn.get("/repos/#{owner}/#{repo}/contributors")
+  def get_contributors
+    resp = conn.get("/repos/#{@owner}/#{@repo}/contributors")
+    contributors = JSON.parse(resp.body, symbolize_names: true)
+    contributors.map do |contributor|
+      contributor[:login]
+    end
+  end
+
+  def get_pull_requests
+    resp = conn.get("/repos/#{@owner}/#{@repo}/pulls?state=all")
     JSON.parse(resp.body, symbolize_names: true)
   end
 end
