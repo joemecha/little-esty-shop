@@ -110,9 +110,20 @@ RSpec.describe Invoice, type: :model do
       invoice_6 = FactoryBot.create(:invoice)
 
       expected = [invoice_1, invoice_2, invoice_3, invoice_4, invoice_5, invoice_1]
+      # incomplete test
     end
+  end
 
-    it '::total_revenue' do
+
+  describe "instance methods" do
+    it "#total_revenue" do
+      invoice_A = create(:invoice, customer_id: @customer_1.id)
+      item_a = create(:item, merchant: @merchant_1)
+      item_b = create(:item, merchant: @merchant_1)
+      ii_1 = InvoiceItem.create!(invoice_id: invoice_A.id, item_id: item_a.id, quantity: 10, unit_price: 10, status: 2)
+      ii_11 = InvoiceItem.create!(invoice_id: invoice_A.id, item_id: item_b.id, quantity: 5, unit_price: 10, status: 1)
+
+      expect(invoice_A.total_revenue).to eq(150)
     end
   end
 end

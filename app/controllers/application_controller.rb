@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :github
-  
+  # before_action :github
+
   def admin
   end
 
