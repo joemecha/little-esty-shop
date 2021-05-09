@@ -33,7 +33,14 @@ class Item < ApplicationRecord
   end
 
   def top_selling_date
-    # AR here
+    invoices
+    .joins(:invoice_items)
+    .where('invoices.status = 2')
+    .select('invoices.*, sum(invoice_items.unit_price * invoice_items.quantity) as money_earned')
+    .group(:id)
+    .order("money_earned desc", "created_at desc")
+    .first
+    .created_at
+    .to_date
   end
-
 end
