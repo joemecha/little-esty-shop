@@ -57,6 +57,7 @@ This project requires Ruby 2.5.3.
    sales, invoice revenue etc.
 3. CRUD functionality for Merchant Items and Admin Merchants
 4. Hit a GitHub API to display project and team member info on the site
+5. Custom Rake actions to load CSV file data into database
 
 
 ## Phases
